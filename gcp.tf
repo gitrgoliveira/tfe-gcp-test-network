@@ -5,16 +5,10 @@ provider "google" {
 
 }
 
-// Terraform plugin for creating random ids
-resource "random_id" "instance_id" {
-  byte_length = 8
-}
-
-
 module "network" {
-  source       = "terraform-google-modules/network/google"
-  version      = "2.5.0"
-  network_name = "test-nw-${random_id.instance_id.hex}"
+  source       = "app.terraform.io/hc-emea-sentinel-demo/network/google"
+  version      = "2.4.0"
+  network_name = "test-nw"
   project_id   = var.project
   subnets = [
     {
